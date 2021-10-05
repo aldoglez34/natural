@@ -9,14 +9,20 @@ const mongoose = require("mongoose");
 
 app.use(morgan("dev"));
 
+/**
+ * only in production
+ */
 if (isEqual(process.env.NODE_ENV, "production"))
   app.use(express.static("client/build"));
 
+/**
+ * some example
+ */
 app.use(routes);
 
 // TODO: add express types
 app.get("*", (req: any, res: any) =>
-  res.sendFile(path.join(__dirname, "./client/build/in  dex.html"))
+  res.sendFile(path.join(__dirname, "./client/build/index.html"))
 );
 
 // TODO: add compass uri
